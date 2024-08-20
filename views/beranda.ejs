@@ -1,0 +1,69 @@
+<!doctype html>
+<html class="no-js" lang="bimamaarschal">
+
+<%- include('partials/head') %>
+
+<body>
+	<%- include('partials/header', { activePage: 'beranda' }) %>
+	<section class="news-single section" style="padding-top: 5px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-2">
+					<div class="row">
+						<div class="col-12">
+							<div class="comments-form">
+								<h1 style="font-size: 18px;"><i class="fa-solid fa-compass"></i> Dashboard</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8 col-6">
+					<div class="row">
+						<div class="col-12">
+							<div class="comments-form">
+								<h1 style="font-size: 18px; ">Grafik Progres Layanan</h1>
+								<div class="chart-container" style="margin: 0px; padding: 0px; padding-top:25px; ">
+									<canvas style="margin: 0px; padding: 0px;" id="statusChart1"></canvas>
+									<canvas style="margin: 0px; padding: 0px;" id="statusChart2"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-12">
+					<div class="main-sidebar">
+						<div class="single-widget recent-post">
+							<h3 class="title" style="padding-bottom: 0px; margin-bottom: 0px;">Anda Masuk Sebagai</h3>
+							<div class="single-post">
+								<div class="image"> <img src="img/favicon.png" alt="#"> </div>
+								<div class="content">
+									<h5 style="font-size: 12px;"><a href="#"><%= nama_apph %> </a></h5>
+									<ul class="comment" style="font-size: 12px;">
+										<li><i class="fa-solid fa-address-card" aria-hidden="true"></i> <%= idApph %></li>
+										<li><i class="fa-solid fa-id-card" aria-hidden="true"></i><%= Nik %></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- InfoBerita (Awal)-->
+	<div class="infoberita"> <div id="marquee-container"></div> </div>
+    <!-- InfoBerita (Akhir)-->
+
+
+	<%- include('partials/fitur') %>
+
+	<%- include('partials/footer') %>
+
+	<%- include('partials/js') %>
+	
+	
+
+</body>
+
+</html>
