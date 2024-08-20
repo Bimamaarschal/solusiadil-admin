@@ -7,7 +7,7 @@ exports.Lupa = async (req, res) => {
 exports.cekLupa = async (req, res) => {
   const { id_apph, nik } = req.body;
   try {
-    const response = await axios.get(`https://solusiadil-api.vercel.app/apph/idapph/${id_apph}`);
+    const response = await axios.get(`https://solusiadil-api.vercel.app/admin/idapph/${id_apph}`);
     const data = response.data;
     const apphData = Object.values(data).find(item => item.id_apph === id_apph);
     if (apphData && apphData.nik === nik) {
@@ -24,7 +24,7 @@ exports.cekLupa = async (req, res) => {
 exports.updatePassword = async (req, res) => {
   const { id_apph, nik, password } = req.body;
   try {
-    await axios.put(`https://solusiadil-api.vercel.app/apph/idapph/${id_apph}`, { nik, password });
+    await axios.put(`https://solusiadil-api.vercel.app/admin/idapph/${id_apph}`, { nik, password });
     res.send(`
       <!DOCTYPE html>
       <html lang="id">

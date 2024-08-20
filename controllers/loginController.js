@@ -20,7 +20,7 @@ exports.loginApph = async (req, res) => {
   try {
     const { id_apph, password } = req.body;
     const response = await axios.post(
-      'https://solusiadil-api.vercel.app/apph/login',
+      'https://solusiadil-api.vercel.app/admin/login',
       { id_apph, password }
     );
 
