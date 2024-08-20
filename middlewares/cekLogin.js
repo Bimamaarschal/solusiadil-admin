@@ -5,13 +5,13 @@ const cekLogin = (req, res, next) => {
   const token = req.cookies.token;
 
   if (token) {
-    jwt.verify(token, JWT_SECRET, (err, apph) => {
+    jwt.verify(token, JWT_SECRET, (err, admin) => {
       if (err) {
         console.error('Error verifying JWT:', err.message);
         req.authError = 'Gagal verifikasi token. Silakan masuk kembali.';
         next();
       } else {
-        req.apph = apph;
+        req.admin = admin;
         res.redirect('/beranda');
       }
     });

@@ -7,13 +7,13 @@ exports.Lupa = async (req, res) => {
 exports.cekLupa = async (req, res) => {
   const { id_apph, nik } = req.body;
   try {
-    const response = await axios.get(`https://solusiadil-api.vercel.app/admin/idapph/${id_apph}`);
+    const response = await axios.get(`https://solusiadil-api.vercel.app/admin/idadmin/${id_apph}`);
     const data = response.data;
-    const apphData = Object.values(data).find(item => item.id_apph === id_apph);
-    if (apphData && apphData.nik === nik) {
+    const adminData = Object.values(data).find(item => item.id_apph === id_apph);
+    if (adminData && adminData.nik === nik) {
       res.render('password/passwordbaru', { id_apph, nik });
     } else {
-      res.status(400).send('ID APPH atau NIK tidak cocok');
+      res.status(400).send('ID admin atau NIK tidak cocok');
     }
   } catch (error) {
     console.error(error);
@@ -24,7 +24,7 @@ exports.cekLupa = async (req, res) => {
 exports.updatePassword = async (req, res) => {
   const { id_apph, nik, password } = req.body;
   try {
-    await axios.put(`https://solusiadil-api.vercel.app/admin/idapph/${id_apph}`, { nik, password });
+    await axios.put(`https://solusiadil-api.vercel.app/admin/idadmin/${id_apph}`, { nik, password });
     res.send(`
       <!DOCTYPE html>
       <html lang="id">

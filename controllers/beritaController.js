@@ -7,7 +7,7 @@ exports.beritabaruData = async (req, res) => {
     isi,
     judul,
     keterangan,
-    nama_apph,
+    nama_admin,
     status = "Terbit",
     tag,
     tanggal,
@@ -22,7 +22,7 @@ exports.beritabaruData = async (req, res) => {
         isi,
         judul,
         keterangan,
-        nama_apph,
+        nama_admin,
         status,
         tag,
         tanggal,
@@ -69,11 +69,11 @@ exports.beritabaruData = async (req, res) => {
 
 exports.getDataberita = async (req, res) => {
     try {
-      const { id_apph, nama_apph } = req.apph;
+      const { id_apph, nama_admin } = req.admin;
       const response = await axios.get('https://solusiadil-api.vercel.app/berita');
       const beritaData = Object.values(response.data);
   
-      res.render('berita/databerita', { beritaData, id_apph, nama_apph });
+      res.render('berita/databerita', { beritaData, id_apph, nama_admin });
     } catch (error) {
       console.error('Error fetching berita data:', error);
       res.status(500).send('Error fetching berita data');
@@ -82,11 +82,11 @@ exports.getDataberita = async (req, res) => {
 
   exports.getTulisberita = async (req, res) => {
     try {
-      const { id_apph, nama_apph } = req.apph;
+      const { id_apph, nama_admin } = req.admin;
       const response = await axios.get('https://solusiadil-api.vercel.app/berita');
       const berita = Object.values(response.data);
   
-      res.render('berita/tulisberita', { berita, id_apph, nama_apph });
+      res.render('berita/tulisberita', { berita, id_apph, nama_admin });
     } catch (error) {
       console.error('Error fetching berita data:', error);
       res.status(500).send('Error fetching berita data');
@@ -96,14 +96,14 @@ exports.getDataberita = async (req, res) => {
   exports.beritalihatData = async (req, res) => {
     try {
       const id_berita = req.query.id;
-      const { id_apph, nama_apph } = req.apph;
+      const { id_apph, nama_admin } = req.admin;
       const response = await axios.get(`https://solusiadil-api.vercel.app/berita/idberita/${id_berita}`);
       const beritaData = response.data;
       const formattedberita = Object.values(beritaData)[0];
       if (!formattedberita) {
         throw new Error('Data berita tidak ditemukan');
       }
-      res.render('berita/lihatberita', { berita: formattedberita, id_apph, nama_apph });
+      res.render('berita/lihatberita', { berita: formattedberita, id_apph, nama_admin });
   
     } catch (error) {
       console.error(error);
@@ -114,7 +114,7 @@ exports.getDataberita = async (req, res) => {
   exports.beritabacaData = async (req, res) => {
     try {
       const id_berita = req.query.id_berita;
-      const { id_apph, nama_apph } = req.apph;
+      const { id_apph, nama_admin } = req.admin;
       const response = await axios.get(`https://solusiadil-api.vercel.app/berita/idberita/${id_berita}`);
       const response2 = await axios.get('https://solusiadil-api.vercel.app/berita');
       const beritaData2 = Object.values(response2.data);
@@ -123,7 +123,7 @@ exports.getDataberita = async (req, res) => {
       if (!formattedberita) {
         throw new Error('Data berita tidak ditemukan');
       }
-      res.render('berita/bacaberita', { berita: formattedberita, beritaData2, id_apph, nama_apph });
+      res.render('berita/bacaberita', { berita: formattedberita, beritaData2, id_apph, nama_admin });
     } catch (error) {
       console.error(error);
       res.status(500).send('Terjadi kesalahan dalam mengambil data Berita.');
@@ -133,7 +133,7 @@ exports.getDataberita = async (req, res) => {
   exports.hapusData = async (req, res) => {
     try {
       const id_berita = req.query.id;
-      const { id_apph, nama_apph } = req.apph;
+      const { id_apph, nama_admin } = req.admin;
       const response = await axios.delete(`https://solusiadil-api.vercel.app/berita/idberita/${id_berita}`);
       
       if (response.status === 200) {

@@ -16,7 +16,7 @@ const randomStringLength = 50;
 const randomString = generateRandomString(randomStringLength);
 
 
-exports.loginApph = async (req, res) => {
+exports.loginadmin = async (req, res) => {
   try {
     const { id_apph, password } = req.body;
     const response = await axios.post(
@@ -24,14 +24,14 @@ exports.loginApph = async (req, res) => {
       { id_apph, password }
     );
 
-    if (response.data.message === 'Login successful' && response.data.apphData) {
-      const apphData = response.data.apphData;
+    if (response.data.message === 'Login successful' && response.data.adminData) {
+      const adminData = response.data.adminData;
 
       const token = jwt.sign(
         {
-          nama_apph: apphData.nama_apph,
-          id_apph: apphData.id_apph,
-          nik: apphData.nik
+          nama_admin: adminData.nama_admin,
+          id_apph: adminData.id_apph,
+          nik: adminData.nik
         },
         JWT_SECRET,
         { expiresIn: '3h' }
@@ -44,7 +44,7 @@ exports.loginApph = async (req, res) => {
           <head>
             <title>Login Gagal</title>
             <script>
-              alert("Apph Gagal Login karena data pengguna tidak valid");
+              alert("admin Gagal Login karena data pengguna tidak valid");
               window.location.href = "/masuk";
             </script>
           </head>
@@ -61,7 +61,7 @@ exports.loginApph = async (req, res) => {
         <head>
           <title>Login Gagal</title>
           <script>
-            alert("Apph Gagal Login karena ${error.message}");
+            alert("admin Gagal Login karena ${error.message}");
             window.location.href = "/masuk";
           </script>
         </head>
@@ -73,7 +73,7 @@ exports.loginApph = async (req, res) => {
   }
 };
 
-exports.logoutApph = (req, res) => {
+exports.logoutadmin = (req, res) => {
   res.clearCookie('token');
   res.redirect("/");
 };

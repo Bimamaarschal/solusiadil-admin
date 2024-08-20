@@ -6,13 +6,13 @@ const cekJWT = (req, res, next) => {
   const token = req.cookies.token;
 
   if (token) {
-    jwt.verify(token, JWT_SECRET, (err, apph) => {
+    jwt.verify(token, JWT_SECRET, (err, admin) => {
       if (err) {
         console.error('Error verifying JWT:', err.message);
         req.authError = 'Gagal verifikasi token. Silakan masuk kembali.';
         return res.redirect('/tampiljwt'); // Redirect to the desired error page
       } else {
-        req.apph = apph;
+        req.admin = admin;
         return next();
       }
     });

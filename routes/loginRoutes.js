@@ -8,7 +8,7 @@ router.get("/masuk", cekLogin, (req, res) => {
   res.render("masuk", { authError });
 });
 
-router.post("/login", loginController.loginApph);
-router.get("/logout", loginController.logoutApph);
+router.post("/login", loginController.loginadmin);
+router.get("/logout", loginController.logoutadmin);
 
 module.exports = router;
