@@ -8,6 +8,8 @@ const blogRoutes = require("./routes/blogRoutes");
 const lupaRoutes = require("./routes/lupaRoutes");
 const aturanRoutes = require("./routes/aturanRoutes");
 const beritaRoutes = require("./routes/beritaRoutes");
+const apphRoutes = require("./routes/apphRoutes");
+const masyarakatRoutes = require("./routes/masyarakatRoutes");
 const path = require("path");
 
 const app = express();
@@ -33,6 +35,8 @@ app.use("/", blogRoutes);
 app.use("/", lupaRoutes);
 app.use("/", aturanRoutes);
 app.use("/", beritaRoutes);
+app.use("/", apphRoutes);
+app.use("/", masyarakatRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

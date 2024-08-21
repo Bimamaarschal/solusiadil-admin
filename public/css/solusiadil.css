@@ -504,7 +504,7 @@ body{
 	opacity: 0;
 	visibility: hidden;
 	top: 74px;
-	border-left:3px solid #2889e4;
+	border-left:3px solid black;
 }
 .header .nav li:hover .dropdown{
 	opacity:1;

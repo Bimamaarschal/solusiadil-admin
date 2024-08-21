@@ -76,7 +76,7 @@ exports.updateKonsultasi = async (req, res) => {
         keterangan: req.body.keterangan,
         lanjutan1: "Belum Tersedia",
         media: "Belum Tersedia",
-        nama_admin: req.body.nama_admin,
+        nama_apph: req.body.nama_apph,
         nama_mast: req.body.nama_mast,
         pertanyaan: req.body.pertanyaan,
         referensi: req.body.referensi,

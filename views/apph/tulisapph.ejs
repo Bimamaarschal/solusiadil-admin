@@ -1,0 +1,215 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<%- include('../partials/head') %>
+
+	<body>
+
+		<%- include('../partials/header', { activePage: 'dataapph' }) %>
+			<section class="news-single section" style="padding-top: 5px;">
+				<div class="container">
+					<div class="row"></div>
+					<div class="col-lg-12 col-2">
+						<div class="col-lg-12 col-12">
+							<div class="row">
+								<div class="col-12">
+									<div class="comments-form">
+										<h1 style="font-size: 18px;"><i style="font-size: 25px; padding-right: 15px;"
+												class="fa-solid fa-scale-balanced"></i> apph Hukum Baru</h1>
+									</div>
+								</div>
+							</div>
+						</div>
+						<form action="/kirimapph" method="POST">
+							<div class="col-lg-12 col-12">
+								<div class="row">
+									<div class="col-12">
+										<div class="comments-form">
+											<div class="d-flex justify-content-between align-items-center">
+												<h2 style="display: inline;">
+													Apph Hukum Baru
+												</h2>
+												<i style="font-size: 15px;" class="fa-solid fa-info-circle"
+													title="Data tidak dapat diubah"></i>
+											</div>
+											<div class="row">
+												<div class="col-lg-6 col-md-6 col-12">
+													<div class="form-group position-relative">
+														<small>ID APPH</small>
+														<div class="input-icon">
+															<i class="fa-solid fa-key"></i>
+															<input id="id_apph" name="id_apph"
+																oninput="validateLength(this)" readonly>
+														</div>
+														<small id="error-message" style="color:red; display:none;">ID
+															hanya terdiri dari 9 angka acak</small>
+													</div>
+												</div>
+												<div class="col-lg-6 col-md-6 col-12">
+													<div class="form-group">
+														<small>NIK</small>
+														<div class="input-icon">
+															<i class="fa-solid fa-key"></i>
+															<input id="nik" name="nik" type="number"
+																oninput="validateNik(this)" required>
+															<small id="error-message-nik"
+																style="color:red; display:none;">NIK tidak boleh
+																kosong</small>
+														</div>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-12 col-12">
+								<div class="row">
+									<div class="col-12">
+										<div class="comments-form">
+											<h2 style="display: inline;">Data APPH</h2>
+											<br><br>
+											<div class="row">
+												<!-- Nama APPH -->
+												<div class="col-lg-12 col-md-6 col-12">
+													<div class="form-group">
+														<small>Nama APPH</small>
+														<div class="input-icon">
+															<input id="nama_apph" name="nama_apph" type="text"
+																oninput="validateNamaApph(this)" required>
+															<small id="error-message-nama_apph"
+																style="color:red; display:none;">Nama tidak boleh
+																kosong</small>
+														</div>
+													</div>
+												</div>
+
+												<!-- Email -->
+												<div class="col-lg-12 col-md-6 col-12">
+													<div class="form-group">
+														<small>Email</small>
+														<div class="input-icon">
+															<input id="email" name="email" type="email"
+																oninput="validateEmail(this)" required>
+															<small id="error-message-email"
+																style="color:red; display:none;">Format email tidak
+																valid</small>
+														</div>
+													</div>
+												</div>
+
+												<!-- Alamat -->
+												<div class="col-lg-12 col-md-6 col-12">
+													<div class="form-group">
+														<small>Alamat</small>
+														<div class="input-icon">
+															<input id="alamat" name="alamat" type="text"
+																oninput="validateAlamat(this)" required>
+															<small id="error-message-alamat"
+																style="color:red; display:none;">Alamat tidak boleh
+																kosong</small>
+														</div>
+													</div>
+												</div>
+
+												<!-- Pendidikan -->
+												<div class="col-lg-12 col-md-6 col-12">
+													<div class="form-group">
+														<small>Pendidikan</small>
+														<div class="input-icon">
+															<input id="pendidikan" name="pendidikan" type="text"
+																oninput="validatePendidikan(this)" required>
+															<small id="error-message-pendidikan"
+																style="color:red; display:none;">Pendidikan tidak boleh
+																kosong</small>
+														</div>
+													</div>
+												</div>
+
+												<!-- Pekerjaan -->
+												<div class="col-lg-12 col-md-6 col-12">
+													<div class="form-group">
+														<small>Pekerjaan</small>
+														<div class="input-icon">
+															<input id="pekerjaan" name="pekerjaan" type="text"
+																oninput="validatePekerjaan(this)" required>
+															<small id="error-message-pekerjaan"
+																style="color:red; display:none;">Pekerjaan tidak boleh
+																kosong</small>
+														</div>
+													</div>
+												</div>
+
+												<!-- Keterangan -->
+												<div class="col-lg-12 col-md-6 col-12">
+													<div class="form-group">
+														<small>Keterangan</small>
+														<div class="input-icon">
+															<input id="keterangan" name="keterangan" type="text"
+																oninput="validateKeterangan(this)" required>
+															<small id="error-message-keterangan"
+																style="color:red; display:none;">Keterangan tidak boleh
+																kosong</small>
+														</div>
+													</div>
+												</div>
+
+												<!-- Password -->
+												<div class="col-lg-12 col-md-6 col-12">
+													<div class="form-group">
+														<small>Password</small>
+														<div class="input-icon">
+															<input id="password" name="password" type="password"
+																oninput="validatePassword(this)" required>
+															<small id="error-message-password"
+																style="color:red; display:none;">Password tidak boleh
+																kosong</small>
+														</div>
+													</div>
+												</div>
+
+												<!-- Submit Button -->
+												<div class="col-lg-12 col-12">
+													<div class="form-group text-lg-right text-md-right text-center">
+														<div class="get-quote">
+															<button type="submit" class="btn">Kirim</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+
+					</div>
+			</section>
+
+			<%- include('../partials/footer') %>
+				<script src="function/apph.js"></script>
+				<script src="js/jquery.min.js"></script>
+				<script src="js/jquery-migrate-3.0.0.js"></script>
+				<script src="js/jquery-ui.min.js"></script>
+				<script src="js/easing.js"></script>
+				<script src="js/colors.js"></script>
+				<script src="js/popper.min.js"></script>
+				<script src="js/bootstrap-datepicker.js"></script>
+				<script src="js/jquery.nav.js"></script>
+				<script src="js/slicknav.min.js"></script>
+				<script src="js/jquery.scrollUp.min.js"></script>
+				<script src="js/niceselect.js"></script>
+				<script src="js/tilt.jquery.min.js"></script>
+				<script src="js/owl-carousel.js"></script>
+				<script src="js/jquery.counterup.min.js"></script>
+				<script src="js/steller.js"></script>
+				<script src="js/wow.min.js"></script>
+				<script src="js/jquery.magnific-popup.min.js"></script>
+				<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+				<script src="js/bootstrap.min.js"></script>
+				<script src="js/main.js"></script>
+	</body>
+
+</html>
