@@ -1,103 +1,32 @@
 const axios = require("axios");
 
-exports.masyarakatbaruData = async (req, res) => {
-  const {
-    alamat,
-    doc_pendukung = "kosong",
-    email,
-    id_masyarakat,
-    jumlah_kontribusi = "0",
-    keterangan,
-    nama_masyarakat,
-    nik,
-    password,
-    pekerjaan,
-    pendidikan,
-    poin = "0",
-  } = req.body;
-
-  try {
-    const response = await axios.post(
-      "https://solusiadil-api.vercel.app/users",
-      {
-        alamat,
-        doc_pendukung,
-        email,
-        id_masyarakat,
-        jumlah_kontribusi,
-        keterangan,
-        nama_masyarakat,
-        nik,
-        password,
-        pekerjaan,
-        pendidikan,
-        poin,
-      }
-    );
-
-    if (response.status === 201) {
-      res.send(`
-        <html>
-          <head>
-            <title>masyarakat Data Success</title>
-            <script>
-              alert("masyarakat berhasil diajukan, akan berpindah ke halaman Awal");
-              window.location.href = "/datamasyarakat";
-            </script>
-          </head>
-          <body>
-            <p>Kembalikan..</p>
-          </body>
-        </html>
-      `);
-    } else {
-      throw new Error("Gagal menyimpan masyarakat Anda");
-    }
-  } catch (error) {
-    console.error("Error:", error);
-    res.send(`
-      <html>
-        <head>
-          <title>masyarakat Gagal</title>
-          <script>
-            alert("Gagal mengirim data karena ${error.message}");
-            window.location.href = "/tulismasyarakat";
-          </script>
-        </head>
-        <body>
-          <p>Kembalikan...</p>
-        </body>
-      </html>
-    `);
-  }
-};
-
 exports.updatemasyarakatData = async (req, res) => {
   const {
-    alamat, 
-    email, 
-    foto = "0", 
-    id_masyarakat, 
-    jenis_kelamin, 
-    nama, nik, 
-    no_tlp, 
-    password, 
+    alamat,
+    email,
+    foto = "kosong",
+    id_masyarakat,
+    jenis_kelamin,
+    nama,
+    nik,
+    no_tlp,
+    password,
     tgl_lahir,
   } = req.body;
+
   try {
     const response = await axios.put(
       `https://solusiadil-api.vercel.app/users/idmasyarakat/${id_masyarakat}`,
       {
-        alamat, 
-        email, 
-        foto, 
-        id_masyarakat, 
-        jenis_kelamin, 
-        nama, 
-        nik, 
+        alamat,
+        email,
+        foto,
+        jenis_kelamin,
+        nama,
+        nik,
         no_tlp,
-         password, 
-         tgl_lahir,
+        password,
+        tgl_lahir,
       }
     );
 
@@ -105,7 +34,7 @@ exports.updatemasyarakatData = async (req, res) => {
       res.send(`
         <html>
           <head>
-            <title>masyarakat Data Update Success</title>
+            <title>Data Masyarakat Update Success</title>
             <script>
               alert("Data masyarakat berhasil diperbarui, akan berpindah ke halaman Awal");
               window.location.href = "/datamasyarakat";
@@ -124,10 +53,10 @@ exports.updatemasyarakatData = async (req, res) => {
     res.send(`
       <html>
         <head>
-          <title>masyarakat Update Failed</title>
+          <title>Data Masyarakat Update Failed</title>
           <script>
             alert("Gagal memperbarui data karena ${error.message}");
-            window.location.href = "/editmasyarakat?id_masyarakat=${id_masyarakat}";
+            window.location.href = "/editmasyarakat?id=${id_masyarakat}";
           </script>
         </head>
         <body>
@@ -137,6 +66,7 @@ exports.updatemasyarakatData = async (req, res) => {
     `);
   }
 };
+
 
 exports.getDatamasyarakat = async (req, res) => {
   try {

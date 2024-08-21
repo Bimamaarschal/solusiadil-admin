@@ -10,7 +10,6 @@ router.get("/lihatmasyarakat", cekJWT, masyarakatController.masyarakatlihatData)
 router.get("/bacamasyarakat", cekJWT, masyarakatController.masyarakatbacaData);
 router.get("/hapusmasyarakat", cekJWT, masyarakatController.masyarakathapusData);
 router.get("/editmasyarakat", cekJWT, masyarakatController.masyarakateditData);
-router.post("/kirimmasyarakat", cekJWT, masyarakatController.masyarakatbaruData);
 router.post("/updatemasyarakat", cekJWT, masyarakatController.updatemasyarakatData);
 
 module.exports = router;
