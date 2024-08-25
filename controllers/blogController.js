@@ -159,6 +159,24 @@ exports.getDatablog = async (req, res) => {
     }
   };
 
+  exports.bloglihatData2 = async (req, res) => {
+    try {
+      const id_blog = req.query.id;
+      const { id_apph, nama_admin } = req.admin;
+      const response = await axios.get(`https://solusiadil-api.vercel.app/blogs/idblog/${id_blog}`);
+      const blogData = response.data;
+      const formattedBlog = Object.values(blogData)[0];
+      if (!formattedBlog) {
+        throw new Error('Data blog tidak ditemukan');
+      }
+      res.render('blog/lihatblog2', { blog: formattedBlog, id_apph, nama_admin });
+  
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Terjadi kesalahan dalam mengambil data blog.');
+    }
+  };
+
   exports.blogbacaData = async (req, res) => {
     try {
       const id_blog = req.query.id_blog;
@@ -175,5 +193,50 @@ exports.getDatablog = async (req, res) => {
     } catch (error) {
       console.error(error);
       res.status(500).send('Terjadi kesalahan dalam mengambil data blog.');
+    }
+  };
+
+  exports.blogupdateData = async (req, res) => {
+    try {
+      const id_blog = req.body.id_blog;
+      const updatedData = {
+        doc_pendukung: req.body.doc_pendukung,
+        id_apph: req.body.id_apph,
+        id_blog: req.body.id_blog,
+        id_uu: "Masih kosong",
+        isi: req.body.isi,
+        judul: req.body.judul,
+        nama_apph: req.body.nama_apph,
+        gambar: "Masih kosong",
+        status: req.body.status,
+        tag: req.body.tag,
+        tanggal: req.body.tanggal,
+        undang_undang: req.body.undang_undang,
+      };
+  
+      await axios.put(`https://solusiadil-api.vercel.app/blogs/idblog/${id_blog}`, updatedData);
+      res.redirect('datablog');
+    } catch (error) {
+      console.error('Error updating data:', error);
+      res.status(500).send('Error updating data');
+    }
+  };
+
+  exports.bloghapusData = async (req, res) => {
+    try {
+      const id_blog = req.query.id;
+      const { id_apph, nama_admin } = req.admin;
+      const response = await axios.delete(
+        `https://solusiadil-api.vercel.app/blogs/idblog/${id_blog}`
+      );
+  
+      if (response.status === 200) {
+        res.redirect("/datablog");
+      } else {
+        throw new Error("Gagal menghapus data");
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Terjadi kesalahan dalam menghapus data masyarakat.");
     }
   };

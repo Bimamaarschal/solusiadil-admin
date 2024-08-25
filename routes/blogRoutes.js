@@ -8,5 +8,8 @@ router.get("/tulisblog",  cekJWT, blogController.getTulisblog);
 router.post('/kirimblog', blogController.blogbaruData);
 router.get("/lihatblog", cekJWT, blogController.bloglihatData);
 router.get('/bacablog', cekJWT,blogController.blogbacaData);
+router.get('/lihatblog2', cekJWT,blogController.bloglihatData2);
+router.post("/reviewupdate", cekJWT, blogController.blogupdateData);
+router.get("/hapusblog", cekJWT, blogController.bloghapusData);
 
 module.exports = router;

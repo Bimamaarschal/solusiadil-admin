@@ -58,7 +58,7 @@
 															</td>
 															<td>
 																<form
-																	action="<%= blog.status === 'Menunggu' ? '/blogdt' : (blog.status === 'Diproses' ? '/blogdt2' : '/lihatblog') %>"
+																	action="<%= blog.status === 'Menunggu' ? '/lihatblog2' : (blog.status === 'Diproses' ? '/lihatblog2' : '/lihatblog') %>"
 																	method="get">
 																	<input type="hidden" name="id"
 																		value="<%= blog.id_blog %>">

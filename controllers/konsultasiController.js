@@ -1,16 +1,31 @@
 const axios = require('axios');
 
+//Fungsi Ke Halaman Konsultasi
 exports.getKonsultasi = async (req, res) => {
-    try {
+  try {
       const { id_apph, nama_admin } = req.admin;
       const response = await axios.get('https://solusiadil-api.vercel.app/konsultasi');
       const konsultasiData = Object.values(response.data);
-      res.render('konsultasi/konsultasi', { konsultasiData, id_apph, nama_admin });
-    } catch (error) {
+      const itemsPerPage = 15;
+      const page = parseInt(req.query.page) || 1;
+      const totalItems = konsultasiData.length;
+      const totalPages = Math.ceil(totalItems / itemsPerPage);
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = page * itemsPerPage;
+      const sortedKonsultasiData = konsultasiData.sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
+      const paginatedKonsultasiData = sortedKonsultasiData.slice(startIndex, endIndex);
+      res.render('konsultasi/konsultasi', {
+          konsultasiData: paginatedKonsultasiData,
+          id_apph,
+          nama_admin,
+          page,
+          totalPages
+      });
+  } catch (error) {
       console.error('Error fetching konsultasi data:', error);
       res.status(500).send('Error fetching konsultasi data');
-    }
-  };
+  }
+};
 
 exports.getDetailKonsultasi = async (req, res) => {
     try {
@@ -123,3 +138,21 @@ exports.updateKonsultasi1 = async (req, res) => {
       res.status(500).send('Error updating konsultasi');
     }
   };
+
+exports.cetakKonsultasi = async (req, res) => {
+  try {
+    const id_konsultasi = req.query.id;
+    const response = await axios.get(
+      `https://solusiadil-api.vercel.app/konsultasi/idkonsultasi/${id_konsultasi}`
+    );
+    const konsultasiData = response.data;
+    const formattedKonsultasi = Object.values(konsultasiData)[0];
+    if (!formattedKonsultasi) {
+      throw new Error("Data konsultasi tidak ditemukan");
+    }
+    res.render("konsultasi/cetakkonsultasi", { konsultasi: formattedKonsultasi });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Terjadi kesalahan dalam mengambil data konsultasi.");
+  }
+};
