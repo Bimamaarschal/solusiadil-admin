@@ -8,6 +8,7 @@ const blogRoutes = require("./routes/blogRoutes");
 const lupaRoutes = require("./routes/lupaRoutes");
 const aturanRoutes = require("./routes/aturanRoutes");
 const beritaRoutes = require("./routes/beritaRoutes");
+const sertifikatRoutes = require("./routes/sertifikatRoutes");
 const apphRoutes = require("./routes/apphRoutes");
 const masyarakatRoutes = require("./routes/masyarakatRoutes");
 const path = require("path");
@@ -35,6 +36,7 @@ app.use("/", blogRoutes);
 app.use("/", lupaRoutes);
 app.use("/", aturanRoutes);
 app.use("/", beritaRoutes);
+app.use("/", sertifikatRoutes);
 app.use("/", apphRoutes);
 app.use("/", masyarakatRoutes);
 
