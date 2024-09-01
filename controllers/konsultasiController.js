@@ -156,3 +156,21 @@ exports.cetakKonsultasi = async (req, res) => {
     res.status(500).send("Terjadi kesalahan dalam mengambil data konsultasi.");
   }
 };
+
+exports.konsultasihapusData = async (req, res) => {
+  try {
+    const id_konsultasi = req.query.id;
+    const { id_apph, nama_admin } = req.admin;
+    const response = await axios.delete(`https://solusiadil-api.vercel.app/konsultasi/idkonsultasi/${id_konsultasi}`);
+    
+    if (response.status === 200) {
+      res.redirect('/konsultasi');
+    } else {
+      throw new Error('Gagal menghapus data');
+    }
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Terjadi kesalahan dalam menghapus data konsultasi.');
+  }
+};

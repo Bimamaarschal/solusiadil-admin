@@ -88,7 +88,8 @@
 													<td>
 														<a href="/konsultasicetak?id=<%= konsultasi.id_konsultasi %>" style="color: inherit; text-decoration: none;">
 															<i class="fa fa-print" aria-hidden="true"></i>
-														</a>
+														</a>  
+														<a href="#" onclick="confirmDelete('<%= konsultasi.id_konsultasi %>'); return false;" style="color: inherit; text-decoration: none;"><i class="fa-solid fa-trash"></i></a>
 													</td>
 												</tr>
 												<% }); %>
@@ -199,6 +200,13 @@
 						});
 					});
 				});
+			</script>
+			<script>
+				function confirmDelete(id) {
+					if (confirm("Apakah Anda yakin ingin menghapus ID " + id + "?")) {
+						window.location.href = "/hapuskonsultasi?id=" + id;
+					}
+				}
 			</script>
 			<%- include('../partials/js') %>
 	</body>

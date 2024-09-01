@@ -10,5 +10,6 @@ router.get("/konsultasilihat", cekJWT, konsultasiController.getDetailKonsultasi3
 router.post('/updateKonsultasi', konsultasiController.updateKonsultasi);
 router.post('/updateKonsultasi1', konsultasiController.updateKonsultasi1);
 router.get("/konsultasicetak", konsultasiController.cetakKonsultasi);
+router.get("/hapuskonsultasi", cekJWT, konsultasiController.konsultasihapusData);
 
 module.exports = router;
